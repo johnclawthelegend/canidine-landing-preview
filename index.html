@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can I Dine? — Landing Template v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F9F6F0; --cream-2:#FAF7F0; --paper:#FFFFFF;
+    --ink:#1A1D1A; --green:#2C5530; --green-deep:#1E3C22;
+    --olive:#4A5D23; --olive-soft:#758066;
+    --orange:#CC5500; --orange-soft:#E8956B;
+    --line:#E5E0D5; --gold-bg:#FBF1D6; --gold-line:#E8D284; --gold-ink:#6F5810;
+    --safe:#2C5530; --mod:#B7791F; --avoid:#B33A3A;
+    --r:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .display{font-family:'Fraunces',Georgia,serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .overline{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--olive)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%}
+
+  /* ===== Header ===== */
+  header{position:sticky;top:0;z-index:50;background:rgba(249,246,240,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:900;font-size:21px;letter-spacing:-.02em}
+  .logo-mark{width:38px;height:38px;border-radius:11px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:19px}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;font-weight:500;color:var(--olive)}
+  .nav-links a:hover{color:var(--green-deep)}
+  .nav-cta{display:flex;align-items:center;gap:10px}
+  .lang-pill{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 12px;font-size:13px;color:var(--olive);cursor:pointer}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:11px;padding:11px 20px;font-size:14.5px;font-weight:600;cursor:pointer;border:0;transition:.18s}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 6px 18px -6px rgba(204,85,0,.45)}
+  .btn-primary:hover{background:#B54B00;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--green);border:1.5px solid var(--green)}
+  .btn-ghost:hover{background:var(--green);color:#fff}
+  @media(max-width:820px){.nav-links{display:none}}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;padding-top:84px;padding-bottom:88px;align-items:center}
+  .hero h1{font-size:clamp(40px,5.4vw,68px);font-weight:900;line-height:1.02;letter-spacing:-.025em}
+  .hero h1 em{font-style:normal;color:var(--green);position:relative}
+  .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:12px;background:rgba(204,85,0,.18);z-index:-1;border-radius:3px}
+  .hero p.lede{margin-top:22px;font-size:18.5px;color:var(--olive);max-width:520px}
+  .hero-ctas{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+  .hero-proof{margin-top:36px;display:flex;gap:28px;flex-wrap:wrap}
+  .proof-item b{display:block;font-family:'Fraunces',serif;font-size:26px;font-weight:800;color:var(--green-deep)}
+  .proof-item span{font-size:13px;color:var(--olive-soft)}
+  .founders-ribbon{display:inline-flex;align-items:center;gap:8px;background:var(--gold-bg);border:1px solid var(--gold-line);color:var(--gold-ink);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;margin-bottom:22px}
+  .founders-ribbon .dot{width:8px;height:8px;border-radius:99px;background:var(--orange);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media(max-width:960px){.hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:56px}}
+
+  /* ===== Phone demo (interactive) ===== */
+  .demo-shell{background:linear-gradient(150deg,var(--green-deep),var(--green) 70%);border-radius:28px;padding:34px 30px;box-shadow:0 40px 80px -40px rgba(30,60,34,.5)}
+  .demo-title{color:#DCE8DC;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}
+  .demo-title .live{background:rgba(255,255,255,.14);border-radius:99px;padding:3px 10px;font-size:11px}
+  .phone{background:var(--paper);border-radius:20px;padding:20px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+  .phone h4{font-family:'Fraunces',serif;font-size:17px;font-weight:800}
+  .phone .sub{font-size:12px;color:var(--olive-soft);margin-bottom:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px}
+  .chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--olive);cursor:pointer;transition:.15s;user-select:none}
+  .chip:hover{border-color:var(--green)}
+  .chip.on{background:var(--green);border-color:var(--green);color:#fff}
+  .dish{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;transition:.2s}
+  .dish .d-name{font-weight:600;font-size:14px}
+  .dish .d-desc{font-size:12px;color:var(--olive-soft)}
+  .tag{font-size:11px;font-weight:700;border-radius:99px;padding:4px 10px;white-space:nowrap}
+  .tag.safe{background:#E7F0E7;color:var(--safe)}
+  .tag.mod{background:#FBF1D6;color:var(--mod)}
+  .tag.avoid{background:#F9E5E5;color:var(--avoid)}
+  .dish.dim{opacity:.45}
+  .demo-hint{color:#BFD3BF;font-size:12px;margin-top:14px;text-align:center}
+
+  /* ===== Logo strip ===== */
+  .strip{border-bottom:1px solid var(--line);background:var(--cream-2)}
+  .strip .wrap{display:flex;align-items:center;justify-content:center;gap:44px;padding:22px 24px;flex-wrap:wrap}
+  .strip span{font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:#B9B2A2;letter-spacing:.02em}
+
+  /* ===== Sections ===== */
+  section{padding:88px 0}
+  .sec-head{max-width:640px;margin-bottom:52px}
+  .sec-head h2{font-family:'Fraunces',serif;font-size:clamp(30px,3.6vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin-top:12px}
+  .sec-head p{margin-top:14px;color:var(--olive);font-size:16.5px}
+
+  /* How it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:step}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative}
+  .step::before{counter-increment:step;content:"0" counter(step);font-family:'Fraunces',serif;font-weight:900;font-size:44px;color:rgba(204,85,0,.16);position:absolute;top:16px;right:22px}
+  .step h3{font-family:'Fraunces',serif;font-size:19px;font-weight:800;margin-bottom:8px}
+  .step p{font-size:14.5px;color:var(--olive)}
+  .step .icon{width:44px;height:44px;border-radius:12px;background:#E7F0E7;display:grid;place-items:center;font-size:20px;margin-bottom:16px}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
+
+  /* Feature split rows */
+  .feature-row{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:44px 0}
+  .feature-row.rev>div:first-child{order:2}
+  .feature-row h3{font-family:'Fraunces',serif;font-size:28px;font-weight:800;letter-spacing:-.015em;margin-top:10px}
+  .feature-row p{margin-top:12px;color:var(--olive);font-size:15.5px;max-width:460px}
+  .feature-row ul{margin-top:16px;list-style:none}
+  .feature-row li{padding-left:26px;position:relative;font-size:14.5px;color:var(--ink);margin-bottom:9px}
+  .feature-row li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .feature-visual{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 24px 48px -32px rgba(30,60,34,.25)}
+  @media(max-width:900px){.feature-row{grid-template-columns:1fr;gap:28px}.feature-row.rev>div:first-child{order:0}}
+
+  /* translation mini-demo */
+  .lang-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .lang-tab{border:1.5px solid var(--line);border-radius:9px;background:#fff;padding:6px 13px;font-size:13px;font-weight:600;color:var(--olive);cursor:pointer}
+  .lang-tab.on{background:var(--green);border-color:var(--green);color:#fff}
+  .tr-line{padding:12px 14px;border:1px solid var(--line);border-radius:11px;margin-bottom:8px;font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .rtl .tr-line{direction:rtl}
+
+  /* oils / disclaimer card */
+  .oil-card h5{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--olive);margin-bottom:10px}
+  .oil-list{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .oil{background:var(--cream);border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600}
+  .disclaimer{background:var(--gold-bg);border:1px solid var(--gold-line);color:var(--gold-ink);border-radius:11px;padding:13px 15px;font-size:13.5px}
+
+  /* Stats band */
+  .band{background:var(--green-deep);color:#fff;padding:64px 0}
+  .band .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+  .band b{display:block;font-family:'Fraunces',serif;font-size:42px;font-weight:900;color:#fff}
+  .band span{font-size:13.5px;color:#AFC6AF}
+  @media(max-width:860px){.band .wrap{grid-template-columns:repeat(2,1fr)}}
+
+  /* Testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px}
+  .quote p{font-size:15px;color:var(--ink);font-style:italic}
+  .quote .who{margin-top:18px;display:flex;align-items:center;gap:12px}
+  .avatar{width:40px;height:40px;border-radius:99px;background:linear-gradient(135deg,var(--orange-soft),var(--orange));display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px}
+  .who b{display:block;font-size:14px}
+  .who span{font-size:12.5px;color:var(--olive-soft)}
+  .stars{color:var(--orange);letter-spacing:2px;font-size:13px;margin-bottom:12px}
+  @media(max-width:860px){.quotes{grid-template-columns:1fr}}
+
+  /* Pricing teaser */
+  .price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .pcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px;display:flex;flex-direction:column;position:relative}
+  .pcard.hot{border:2px solid var(--orange);box-shadow:0 24px 48px -28px rgba(204,85,0,.35)}
+  .pcard .pop{position:absolute;top:-12px;left:26px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;border-radius:99px;padding:4px 12px;letter-spacing:.06em}
+  .pcard h4{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive-soft)}
+  .pcard .amount{font-family:'Fraunces',serif;font-size:44px;font-weight:900;margin-top:10px}
+  .pcard .amount small{font-size:15px;color:var(--olive-soft);font-weight:500;font-family:'Inter',sans-serif}
+  .pcard .was{font-size:13px;color:var(--olive-soft)}
+  .pcard .was s{color:#B33A3A}
+  .pcard ul{list-style:none;margin:20px 0;flex:1}
+  .pcard li{font-size:14px;padding-left:24px;position:relative;margin-bottom:8px;color:var(--ink)}
+  .pcard li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  @media(max-width:900px){.price-cards{grid-template-columns:1fr}}
+
+  /* FAQ */
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:12px}
+  summary{font-weight:700;font-size:15.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  summary::after{content:"+";font-family:'Fraunces',serif;font-size:22px;color:var(--orange);transition:.2s}
+  details[open] summary::after{transform:rotate(45deg)}
+  details p{margin-top:12px;font-size:14.5px;color:var(--olive)}
+
+  /* Final CTA */
+  .final{background:linear-gradient(150deg,var(--green-deep),var(--green));border-radius:26px;padding:72px 56px;text-align:center;color:#fff;position:relative;overflow:hidden}
+  .final::before{content:"";position:absolute;inset:-40%;background:radial-gradient(circle at 70% 20%,rgba(204,85,0,.25),transparent 45%)}
+  .final h2{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,48px);font-weight:900;letter-spacing:-.02em;position:relative}
+  .final p{margin:16px auto 30px;max-width:520px;color:#CBDCCB;position:relative}
+  .final .btn{position:relative}
+  @media(max-width:700px){.final{padding:48px 24px}}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);background:var(--cream-2);margin-top:88px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding:56px 0 40px}
+  .foot p{font-size:13.5px;color:var(--olive-soft);max-width:340px;margin-top:12px}
+  .foot h6{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:14px}
+  .foot ul{list-style:none}
+  .foot li{margin-bottom:9px;font-size:14px}
+  .foot li a{color:var(--olive)}
+  .foot li a:hover{color:var(--green-deep)}
+  .legal{border-top:1px solid var(--line);padding:20px 0;display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--olive-soft);flex-wrap:wrap}
+  @media(max-width:820px){.foot{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#"><span class="logo-mark">🍽</span> Can I Dine?</a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-pill">🌐 English ▾</button>
+      <button class="btn btn-ghost" style="padding:9px 16px">Sign in</button>
+      <button class="btn btn-primary" style="padding:9px 18px">Get started</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="founders-ribbon"><span class="dot"></span> Founding member pricing — locked for 12 months, ends Sept 24</div>
+      <h1 class="display">Every allergy.<br>Every language.<br><em>One safe menu.</em></h1>
+      <p class="lede">Can I Dine? turns your existing menu into an allergy-aware, AI-verified guide your guests filter in seconds — with cross-contact disclaimers and the exact oils in your kitchen, in 10 languages.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary">List your restaurant →</button>
+        <button class="btn btn-ghost">See a live menu</button>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item"><b>120+</b><span>restaurants listed</span></div>
+        <div class="proof-item"><b>10</b><span>guest languages</span></div>
+        <div class="proof-item"><b>&lt;60s</b><span>menu upload to live</span></div>
+      </div>
+    </div>
+
+    <!-- Interactive allergen demo -->
+    <div class="demo-shell">
+      <div class="demo-title">Guest view <span class="live">● Live demo — tap an allergen</span></div>
+      <div class="phone">
+        <h4>Bella Cucina</h4>
+        <div class="sub">Scanned from table QR · Dinner menu</div>
+        <div class="chips" id="chips">
+          <span class="chip" data-a="gluten">Gluten</span>
+          <span class="chip" data-a="dairy">Dairy</span>
+          <span class="chip" data-a="nuts">Tree nuts</span>
+          <span class="chip" data-a="shellfish">Shellfish</span>
+        </div>
+        <div id="dishes">
+          <div class="dish" data-c="gluten dairy">
+            <div><div class="d-name">Tagliatelle al Ragù</div><div class="d-desc">Fresh egg pasta, slow beef ragù, parmesan</div></div>
+            <span class="tag safe">Suggested</span>
+          </div>
+          <div class="dish" data-c="dairy" data-mod="dairy">
+            <div><div class="d-name">Risotto ai Funghi</div><div class="d-desc">Carnaroli rice, porcini, butter finish</div></div>
+            <span class="tag safe">Suggested</span>
+          </div>
+          <div class="dish" data-c="shellfish">
+            <div><div class="d-name">Gamberi alla Griglia</div><div class="d-desc">Grilled prawns, lemon, olive oil</div></div>
+            <span class="tag safe">Suggested</span>
+          </div>
+          <div class="dish" data-c="nuts dairy">
+            <div><div class="d-name">Torta della Nonna</div><div class="d-desc">Custard tart, pine nuts, powdered sugar</div></div>
+            <span class="tag safe">Suggested</span>
+          </div>
+        </div>
+        <div class="demo-hint" style="color:var(--olive-soft)">Cooking oils: olive · sunflower — cross-contact disclaimer shown to every guest</div>
+      </div>
+      <div class="demo-hint">This is the real guest experience — filtered instantly, no app install.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP (placeholder logos) ============ -->
+<div class="strip">
+  <div class="wrap">
+    <span>TRATTORIA MILANO</span><span>SAKURA HOUSE</span><span>EL JARDÍN</span><span>THE GREEN FORK</span><span>MEZZE &amp; CO</span>
+  </div>
+</div>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="overline">How it works</div>
+      <h2>Live in three steps. No menu re-typing, ever.</h2>
+      <p>Upload the menu you already have — PDF, Word, spreadsheet, even a photo. Our AI does the rest.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="icon">📄</div>
+        <h3>Upload any menu</h3>
+        <p>Drop in a PDF, DOCX, XLSX, PPTX or photo. AI parsing extracts every dish, ingredient and allergen in under a minute.</p>
+      </div>
+      <div class="step">
+        <div class="icon">🛡️</div>
+        <h3>Review &amp; approve</h3>
+        <p>You confirm allergens, add modification notes, list your cooking oils and cross-contact policy. Every edit is logged.</p>
+      </div>
+      <div class="step">
+        <div class="icon">📱</div>
+        <h3>Guests scan &amp; filter</h3>
+        <p>A branded QR on the table opens your live menu. Guests pick their allergies and instantly see what's suggested, modifiable, or to avoid.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURE ROWS ============ -->
+<section id="features" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="overline">Why restaurants switch</div>
+      <h2>Built for the 7:45pm allergy ticket.</h2>
+    </div>
+
+    <div class="feature-row">
+      <div>
+        <div class="overline">AI + rules, double-checked</div>
+        <h3 class="display">Answers your staff can stand behind</h3>
+        <p>Every dish is checked twice — by our allergen rule engine and by AI verification across the whole menu. When they disagree, we err on the side of caution and tell the guest to confirm with staff.</p>
+        <ul>
+          <li>14 major allergens + diets &amp; medical conditions (celiac, FODMAP…)</li>
+          <li>Unusual restrictions typed in plain English, analyzed on the spot</li>
+          <li>"Can be modified" notes — keep the sale, keep the guest safe</li>
+        </ul>
+      </div>
+      <div class="feature-visual oil-card">
+        <h5>What every guest sees</h5>
+        <div class="disclaimer" style="margin-bottom:14px"><b>Cross-contact disclaimer:</b> Our kitchen handles gluten, dairy, and shellfish. Fryers are shared. Tell your server about severe allergies.</div>
+        <h5>Cooking oils used</h5>
+        <div class="oil-list"><span class="oil">Olive oil</span><span class="oil">Sunflower oil</span><span class="oil">Butter (finishing)</span></div>
+        <div class="tr-line"><span>Alpha-gal syndrome — full menu analysis</span><span class="tag safe">AI-verified</span></div>
+      </div>
+    </div>
+
+    <div class="feature-row rev">
+      <div>
+        <div class="overline">10 languages, one menu</div>
+        <h3 class="display">Every guest reads it in their language</h3>
+        <p>Allergens, modification notes and safety labels translate instantly — so guests can tell your team exactly what they need, and understand exactly what's safe.</p>
+        <ul>
+          <li>English, Spanish, French, Italian, Arabic, Hindi, Mandarin, Portuguese, Russian, Amharic</li>
+          <li>Their choice is remembered on every page and every visit</li>
+          <li>Right-to-left layouts handled automatically</li>
+        </ul>
+      </div>
+      <div class="feature-visual" id="trdemo">
+        <div class="lang-tabs">
+          <span class="lang-tab on" data-l="en">EN</span>
+          <span class="lang-tab" data-l="es">ES</span>
+          <span class="lang-tab" data-l="ar">AR</span>
+          <span class="lang-tab" data-l="zh">ZH</span>
+        </div>
+        <div id="trlines"></div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div>
+        <div class="overline">Get discovered</div>
+        <h3 class="display">A directory of allergy-safe dining</h3>
+        <p>Premium listings appear in our public directory, where allergy-aware diners actively search for restaurants that take them seriously. Your safest menu becomes your best marketing.</p>
+        <ul>
+          <li>Public profile with your branded menu &amp; safety practices</li>
+          <li>SEO-ready pages — discoverable on Google</li>
+          <li>Recommendations to subscribed diners in your city</li>
+        </ul>
+      </div>
+      <div class="feature-visual">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <b style="font-family:'Fraunces',serif;font-size:17px">canidine.com/directory</b>
+          <span class="tag safe">Live</span>
+        </div>
+        <div class="tr-line"><span>🍝 Bella Cucina — Italian · Midtown</span><span class="tag safe">Gluten-aware</span></div>
+        <div class="tr-line"><span>🍣 Sakura House — Japanese · River North</span><span class="tag safe">Nut-free kitchen</span></div>
+        <div class="tr-line"><span>🌮 El Jardín — Mexican · Downtown</span><span class="tag mod">Dairy-optional</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<div class="band">
+  <div class="wrap">
+    <div><b>33%</b><span>of diners avoid an ingredient — party veto power is real</span></div>
+    <div><b>2×</b><span>checked: rules engine + AI verification</span></div>
+    <div><b>&lt;60s</b><span>from menu upload to live QR page</span></div>
+    <div><b>10</b><span>languages, remembered per guest</span></div>
+  </div>
+</div>
+
+<!-- ============ TESTIMONIALS (placeholders) ============ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="overline">What partners say</div>
+      <h2>The allergy ticket stopped stalling the line.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"Guests answer their own allergy questions before the server gets to the table. Friday service actually moves now."</p>
+        <div class="who"><div class="avatar">MR</div><div><b>[Owner name]</b><span>[Italian restaurant, city]</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"A celiac guest told us it was the first time she'd ordered without a 10-minute interrogation. She came back with six friends."</p>
+        <div class="who"><div class="avatar">AS</div><div><b>[Chef name]</b><span>[Bistro, city]</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"The Arabic and Mandarin translations alone won us two tour groups a month. The QR pays for itself."</p>
+        <div class="who"><div class="avatar">JT</div><div><b>[GM name]</b><span>[Hotel restaurant, city]</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING TEASER ============ -->
+<section id="pricing" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="overline">Founding member pricing</div>
+      <h2>Lock the founding rate for your first year.</h2>
+      <p>Enrollment window closes September 24, 2026. Standard rates apply after.</p>
+    </div>
+    <div class="price-cards">
+      <div class="pcard">
+        <h4>Individual</h4>
+        <div class="amount">$50<small>/mo</small></div>
+        <div class="was">then <s></s>$79 standard · save $348/yr</div>
+        <ul>
+          <li>1 restaurant · 3 staff seats</li>
+          <li>Branded QR + guest menu</li>
+          <li>AI menu parsing &amp; edit log</li>
+          <li>All 10 languages included</li>
+        </ul>
+        <button class="btn btn-ghost">Get Individual</button>
+      </div>
+      <div class="pcard hot">
+        <span class="pop">MOST POPULAR</span>
+        <h4>Premium</h4>
+        <div class="amount">$125<small>/mo</small></div>
+        <div class="was">then <s></s>$199 standard · save $888/yr</div>
+        <ul>
+          <li>Everything in Individual</li>
+          <li>Public directory listing</li>
+          <li>Multiple menus: brunch → happy hour</li>
+          <li>Recommendations to subscribers</li>
+          <li>Priority AI extraction</li>
+        </ul>
+        <button class="btn btn-primary">Get Premium</button>
+      </div>
+      <div class="pcard">
+        <h4>Restaurant Group</h4>
+        <div class="amount">$1,000<small>/mo</small></div>
+        <div class="was">then <s></s>$1,500 standard · up to 10 locations</div>
+        <ul>
+          <li>10 restaurants &amp; concepts</li>
+          <li>30 staff seats, central edit log</li>
+          <li>All Premium features per location</li>
+        </ul>
+        <button class="btn btn-ghost">Get Group</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="sec-head">
+      <div class="overline">FAQ</div>
+      <h2>Questions restaurants actually ask.</h2>
+    </div>
+    <details open>
+      <summary>Do I have to re-type my menu?</summary>
+      <p>No. Upload the PDF, Word doc, spreadsheet, or even a photo of the printed menu. AI parsing extracts dishes, descriptions, and likely allergens — you just review and approve.</p>
+    </details>
+    <details>
+      <summary>What if the AI gets an allergen wrong?</summary>
+      <p>Every dish is double-checked by a rules engine and AI verification, and you approve everything before it goes live. Guests always see your cross-contact disclaimer, and anything uncertain is labeled "confirm with staff" — never silently marked safe.</p>
+    </details>
+    <details>
+      <summary>Does this replace my POS or menu system?</summary>
+      <p>No — it sits alongside whatever you use today. Your printed menu stays; the QR simply gives allergy-aware guests a safe way to read it.</p>
+    </details>
+    <details>
+      <summary>What happens after the founding window closes?</summary>
+      <p>Founding members keep their rate for the first 12 monthly billing cycles. New signups after September 24, 2026 pay standard pricing.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="final">
+      <h2 class="display">One allergy ticket shouldn't stop your whole line.</h2>
+      <p>List your restaurant today — menu live in under an hour, founding rate locked for a year.</p>
+      <button class="btn btn-primary" style="font-size:16px;padding:14px 30px">List your restaurant →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#"><span class="logo-mark">🍽</span> Can I Dine?</a>
+        <p>Allergy-aware, AI-assisted menus that let every guest dine without doubt. Each restaurant page lists cross-contact disclaimers and the exact oils used in the kitchen.</p>
+      </div>
+      <div>
+        <h6>Product</h6>
+        <ul>
+          <li><a href="#">Restaurant directory</a></li>
+          <li><a href="#pricing">Pricing &amp; plans</a></li>
+          <li><a href="#">List your restaurant</a></li>
+          <li><a href="#">Restaurant sign in</a></li>
+        </ul>
+      </div>
+      <div>
+        <h6>Legal</h6>
+        <ul>
+          <li><a href="#">Customer Terms of Use</a></li>
+          <li><a href="#">Restaurant Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Can I Dine? — Dine without doubt.</span>
+      <span>Customer Terms · Restaurant Terms · Privacy Policy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ------- allergen filter demo -------
+const chips = document.querySelectorAll('#chips .chip');
+const dishes = document.querySelectorAll('#dishes .dish');
+const active = new Set();
+chips.forEach(ch => ch.addEventListener('click', () => {
+  const a = ch.dataset.a;
+  active.has(a) ? active.delete(a) : active.add(a);
+  ch.classList.toggle('on');
+  dishes.forEach(d => {
+    const contains = (d.dataset.c || '').split(' ');
+    const mods = (d.dataset.mod || '').split(' ');
+    const hits = [...active].filter(x => contains.includes(x));
+    const tag = d.querySelector('.tag');
+    if (!hits.length) { tag.className = 'tag safe'; tag.textContent = 'Suggested'; d.classList.remove('dim'); }
+    else if (hits.every(x => mods.includes(x))) { tag.className = 'tag mod'; tag.textContent = 'Can be modified'; d.classList.remove('dim'); }
+    else { tag.className = 'tag avoid'; tag.textContent = 'Avoid'; d.classList.add('dim'); }
+  });
+}));
+
+// ------- translation demo -------
+const TR = {
+  en: [["Grilled prawns, lemon, olive oil","Suggested"],["Contains: shellfish","Avoid — shellfish allergy"],["Cross-contact: shared fryers","Tell your server"]],
+  es: [["Gambas a la plancha, limón, aceite de oliva","Sugerido"],["Contiene: mariscos","Evitar — alergia a mariscos"],["Contacto cruzado: freidoras compartidas","Informa a tu camarero"]],
+  ar: [["جمبري مشوي، ليمون، زيت زيتون","مقترح"],["يحتوي على: محار","تجنب — حساسية المحار"],["تلامس متبادل: مقالي مشتركة","أخبر النادل"]],
+  zh: [["烤虾、柠檬、橄榄油","推荐"],["含有：贝类","避免 — 贝类过敏"],["交叉接触：共用炸锅","请告知服务员"]],
+};
+const trlines = document.getElementById('trlines');
+const trdemo = document.getElementById('trdemo');
+function renderTr(l){
+  trdemo.classList.toggle('rtl', l === 'ar');
+  trlines.innerHTML = TR[l].map(([a,b],i) =>
+    `<div class="tr-line"><span>${a}</span><span class="tag ${i===1?'avoid':i===2?'mod':'safe'}">${b}</span></div>`).join('');
+}
+document.querySelectorAll('.lang-tab').forEach(t => t.addEventListener('click', () => {
+  document.querySelectorAll('.lang-tab').forEach(x => x.classList.remove('on'));
+  t.classList.add('on');
+  renderTr(t.dataset.l);
+}));
+renderTr('en');
+</script>
+</body>
+</html>
